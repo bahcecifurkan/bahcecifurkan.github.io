@@ -21,23 +21,28 @@ limitations under the License.
 	    overflow:hidden;
 	  }
       div{
-	    height:400PX;
-	    width:400PX;
+   margin: 0;
+   padding: 0;
 	    text-align:center;
-	    border:0px solid silver;
-	    display: table-cell;
-	    vertical-align:middle;
+      width: 100%;
 	    color:#0000FF;
 	    font-weight:bold;
 	    font-family:Verdana, Geneva, sans-serif;
 	    font-size:40px;
 	}
+  img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
     </style>
     <title>Cast Hello Text</title>
   </head>
   <body>
-	<DIV ><button onclick="add_google_logo();">Add Logo</button></DIV>
-  <DIV id="message">Text</DIV>
+	<div>
+   <button onclick="add_google_logo();">Add Logo</button></DIV>
+   <img id="image" /> 
+  </div>
     <script type="text/javascript">
     window.onload = function() {
         cast.receiver.logger.setLevelValue(0);
@@ -100,17 +105,12 @@ limitations under the License.
 
 
        function add_google_logo() {
-        var src = "https://static1.zingat.com/static/img/home/sprite.43da74468814d21c28b052c6e939b458.png";
-        show_image("https://static1.zingat.com/static/img/home/sprite.43da74468814d21c28b052c6e939b458.png", 276,110, "Google Logo");
+      
+        show_image("http://www.w3schools.com/html/pic_mountain.jpg");
     }
 
-    function show_image(src, width, height, alt) {
-        var img = document.createElement("img");
-        img.src = src;
-        img.width = width;
-        img.height = height;
-        img.alt = alt;
-        document.body.appendChild(img);
+    function show_image(src) {
+      document.getElementById("image").src=src;
     }
 
     </script>
