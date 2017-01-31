@@ -40,6 +40,7 @@ limitations under the License.
   </head>
   <body>
 	<div>
+  <DIV id="message">Talk to me</DIV>
    <button onclick="add_google_logo();">Add Logo</button></DIV>
    <img id="image" /> 
   </div>
@@ -78,7 +79,7 @@ limitations under the License.
         // create a CastMessageBus to handle messages for a custom namespace
         window.messageBus =
           window.castReceiverManager.getCastMessageBus(
-              'urn:x-cast:com.google.cast.sample.helloworld');
+              'urn:x-cast:com.zingat.pro');
 
         // handler for the CastMessageBus message event
         window.messageBus.onMessage = function(event) {
