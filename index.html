@@ -14,7 +14,7 @@
          color:#0000FF;
          font-weight:bold;
          font-family:Verdana, Geneva, sans-serif;
-         font-size:40px;
+         font-size:15px;
          }
          img {
          display: block;
@@ -65,7 +65,7 @@
         // create a CastMessageBus to handle messages for a custom namespace
         window.messageBus =
           window.castReceiverManager.getCastMessageBus(
-              'urn:x-cast:com.google.cast.sample.helloworld');
+              'urn:x-cast:com.zingat.pro');
 
         // handler for the CastMessageBus message event
         window.messageBus.onMessage = function(event) {
