@@ -1,94 +1,99 @@
 <!DOCTYPE html>
 <html>
-   <head>
-      <style type="text/css">
-         body {
-         overflow:hidden;
-         background-color: #000000;
-         }
-         div{
-         margin: 0;
-         padding: 0;
-         text-align:center;
-         width: 100%;
-         }
-         img {
-         display: block;
-         margin-left: auto;
-         margin-right: auto;
-         }
-         #index{
-          position: absolute;
-          vertical-align: bottom;
-          bottom: 0;
-          left: 0;
 
-         color:#FFFFFF;
-         font-weight:bold;
-         font-family:Verdana, Geneva, sans-serif;
-         font-size:30px;
-         }
-      </style>
-      <title>Zingat Cast</title>
-   </head>
-   <body>
-      <div>
-         <img id="image" src="http://www.shunvmall.com/data/out/179/47176882-picture.png" /> 
+<head>
+    <style type="text/css">
+        body {
+            overflow: hidden;
+            background-color: #000000;
+        }
+        div {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            width: 100%;
+        }
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #index {
+            position: absolute;
+            vertical-align: bottom;
+            bottom: 0;
+            left: 0;
+            color: #FFFFFF;
+            font-weight: bold;
+            font-family: Verdana, Geneva, sans-serif;
+            font-size: 30px;
+        }
+    </style>
+    <title>Zingat Cast</title>
+</head>
 
-         <div id="index"></div>
-      </div>
-      <script type="text/javascript" src="//www.gstatic.com/cast/sdk/libs/receiver/2.0.0/cast_receiver.js"></script>
-      <script type="text/javascript">
-         window.onload = function() {
-           cast.receiver.logger.setLevelValue(0);
-           window.castReceiverManager = cast.receiver.CastReceiverManager.getInstance();
-           console.log('Starting Receiver Manager');
-         
-           castReceiverManager.onReady = function(event) {
-             console.log('Received Ready event: ' + JSON.stringify(event.data));
-             window.castReceiverManager.setApplicationState("Application status is ready...");
-           };
-         
-           castReceiverManager.onSenderConnected = function(event) {
-             console.log('Received Sender Connected event: ' + event.data);
-             console.log(window.castReceiverManager.getSender(event.data).userAgent);
-           };
-         
-           castReceiverManager.onSenderDisconnected = function(event) {
-             console.log('Received Sender Disconnected event: ' + event.data);
-             if (window.castReceiverManager.getSenders().length == 0) {
-             window.close();
-           }
-           };
-         
-           castReceiverManager.onSystemVolumeChanged = function(event) {
-             console.log('Received System Volume Changed event: ' + event.data['level'] + ' ' +
-                 event.data['muted']);
-           };
-         
-           window.messageBus =
-             window.castReceiverManager.getCastMessageBus(
-                 'urn:x-cast:com.zingat.pro');
-         
-           window.messageBus.onMessage = function(event) {
-             console.log('Message [' + event.senderId + ']: ' + event.data);
-             var obj = JSON.parse(event.data);
-             displayText(obj.index);
-             show_image(obj.url);
-             window.messageBus.send(event.senderId, event.data);
-           }
-         
-           window.castReceiverManager.start({statusText: "Application is starting"});
-           console.log('Receiver Manager started');
-         };
-         
-         function displayText(text) {
-           console.log(text);
-           window.castReceiverManager.setApplicationState(text);
-         };
-         function show_image(src) {
-              document.getElementById("image").src=src;
-         }
-      </script>
-   </body>
+<body>
+    <div>
+        <img id="image" src="http://www.shunvmall.com/data/out/179/47176882-picture.png" />
+
+        <div id="index"></div>
+    </div>
+    <script type="text/javascript" src="//www.gstatic.com/cast/sdk/libs/receiver/2.0.0/cast_receiver.js"></script>
+    <script type="text/javascript">
+        window.onload = function() {
+            cast.receiver.logger.setLevelValue(0);
+            window.castReceiverManager = cast.receiver.CastReceiverManager.getInstance();
+            console.log('Starting Receiver Manager');
+
+            castReceiverManager.onReady = function(event) {
+                console.log('Received Ready event: ' + JSON.stringify(event.data));
+                window.castReceiverManager.setApplicationState("Application status is ready...");
+            };
+
+            castReceiverManager.onSenderConnected = function(event) {
+                console.log('Received Sender Connected event: ' + event.data);
+                console.log(window.castReceiverManager.getSender(event.data).userAgent);
+            };
+
+            castReceiverManager.onSenderDisconnected = function(event) {
+                console.log('Received Sender Disconnected event: ' + event.data);
+                if (window.castReceiverManager.getSenders().length == 0) {
+                    window.close();
+                }
+            };
+
+            castReceiverManager.onSystemVolumeChanged = function(event) {
+                console.log('Received System Volume Changed event: ' + event.data['level'] + ' ' +
+                    event.data['muted']);
+            };
+
+            window.messageBus =
+                window.castReceiverManager.getCastMessageBus(
+                    'urn:x-cast:com.zingat.pro');
+
+            window.messageBus.onMessage = function(event) {
+                console.log('Message [' + event.senderId + ']: ' + event.data);
+                var obj = JSON.parse(event.data);
+                displayText(obj.index);
+                show_image(obj.url);
+                window.messageBus.send(event.senderId, event.data);
+            }
+
+            window.castReceiverManager.start({
+                statusText: "Application is starting"
+            });
+            console.log('Receiver Manager started');
+        };
+
+        function displayText(text) {
+            console.log(text);
+            window.castReceiverManager.setApplicationState(text);
+        };
+
+        function show_image(src) {
+            document.getElementById("image").src = src;
+        }
+    </script>
+</body>
+
 </html>
