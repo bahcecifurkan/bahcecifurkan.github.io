@@ -74,7 +74,7 @@
             window.messageBus.onMessage = function(event) {
                 console.log('Message [' + event.senderId + ']: ' + event.data);
                 var obj = JSON.parse(event.data);
-                displayText(obj.index);
+                displayText(obj.index + '/' + obj.totalpage);
                 show_image(obj.url);
                 window.messageBus.send(event.senderId, event.data);
             }
