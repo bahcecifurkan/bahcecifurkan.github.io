@@ -87,12 +87,12 @@
 
         function displayText(text) {
             console.log(text);
+            document.getElementById("index").innerHTML=text;
             window.castReceiverManager.setApplicationState(text);
         };
 
         function show_image(src) {
             document.getElementById("image").src = src;
-            document.getElementById("index").innerHTML=text;
         }
     </script>
 </body>
